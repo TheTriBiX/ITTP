@@ -15,6 +15,8 @@
         <input type="checkbox" id="country" name={{ i.currency }}>
         <label for="scales">{{ i.currency }}</label>
     </div>
+    {% empty %}
+    <p>Сначала добавьте данные о странах <a href="{% url 'table' %}">Здесь</a></p>
     {% endfor %}
     <label for="day">C</label>
     <select id="day" name="day_from">
