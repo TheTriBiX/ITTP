@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Графики</title>
+</head>
+<body>
+<a href="{% url 'graphics' %}"> Графики </a>
+<a href="{% url 'table' %}"> Добавление в БД(таблица) </a>
+<form method="post">
+    {% csrf_token %}
+    {% for i in countries %}
+    <div class="container_tags_alltags_checkbox">
+        <input type="checkbox" id="country" name={{ i.currency }}>
+        <label for="scales">{{ i.currency }}</label>
+    </div>
+    {% endfor %}
+    <label for="day">C</label>
+    <select id="day" name="day_from">
+        <option value="">Выберите день</option>
+        {% for day in days %}
+        <option value="{{ day }}">{{ day }}</option>
+        {% endfor %}
+    </select>
+    <select id="month" name="month_from">
+        <option value="">Выберите месяц</option>
+        {% for month in month %}
+        <option value="{{ month }}">{{ month }}</option>
+        {% endfor %}
+    </select>
+
+    <select id="year" name="year_from">
+        <option value="">Выберите год</option>
+        {% for year in years %}
+        <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <br>
+    <br>
+    <label for="day">До</label>
+    <select id="day" name="day_to">
+        <option value="">Выберите день</option>
+        {% for day in days %}
+        <option value="{{ day }}">{{ day }}</option>
+        {% endfor %}
+    </select>
+    <select id="month" name="month_to">
+        <option value="">Выберите месяц</option>
+        {% for month in month %}
+        <option value="{{ month }}">{{ month }}</option>
+        {% endfor %}
+    </select>
+
+
+    <select id="year" name="year_to">
+        <option value="">Выберите год</option>
+        {% for year in years %}
+        <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    {% csrf_token %}
+    <button type="submit" value="post" name="post" id="post">Подтвердить</button>
+</form>
+{% for img in graphics %}
+<p><img src="{% static img %}"></p>
+{% endfor %}
+</body>
+</html>

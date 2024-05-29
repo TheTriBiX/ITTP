@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор даты</title>
+</head>
+<body>
+<a href="{% url 'graphics' %}"> Графики </a>
+<a href="{% url 'table' %}"> Добавление в БД(таблица) </a>
+<form method="post">
+    {% csrf_token %}
+    <label for="day">C</label>
+    <select id="day" name="day_from">
+        <option value="">Выберите день</option>
+        {% for day in days %}
+        <option value="{{ day }}">{{ day }}</option>
+        {% endfor %}
+    </select>
+    <select id="month" name="month_from">
+        <option value="">Выберите месяц</option>
+        {% for month in month %}
+        <option value="{{ month }}">{{ month }}</option>
+        {% endfor %}
+    </select>
+
+    <select id="year" name="year_from">
+        <option value="">Выберите год</option>
+        {% for year in years %}
+        <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <br>
+    <br>
+    <label for="day">До</label>
+    <select id="day" name="day_to">
+        <option value="">Выберите день</option>
+        {% for day in days %}
+        <option value="{{ day }}">{{ day }}</option>
+        {% endfor %}
+    </select>
+    <select id="month" name="month_to">
+        <option value="">Выберите месяц</option>
+        {% for month in month %}
+        <option value="{{ month }}">{{ month }}</option>
+        {% endfor %}
+    </select>
+
+
+    <select id="year" name="year_to">
+        <option value="">Выберите год</option>
+        {% for year in years %}
+        <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    {% csrf_token %}
+    <button type="submit" value="post" name="post" id="post">Подтвердить</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th scope="col">currency</th>
+        <th scope="col">date</th>
+        <th scope="col">value</th>
+        <th scope="col">daily_change</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for row in table %}
+    <tr>
+        <td>{{row.currency}}</td>
+        <td>{{row.date}}</td>
+        <td>{{row.value}}</td>
+        <td>{{row.daily_change}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
